@@ -1,7 +1,7 @@
 # import tkinter
 from tkinter import *
+import math
 #Global variables
-
 # creates window
 window = Tk()
 window.title("BRENDANATOR's AWESOME CALCULATOR")
@@ -32,6 +32,8 @@ def equal_button():
         e.insert(0, (f_num) * int(second_input))
     if (operation == "DIV"):
         e.insert(0, (f_num) / int(second_input))
+    if (operation == "SQRT"):
+        e.insert(0,math.sqrt(f_num))
 def button_sub():
     first_input = e.get()
     global f_num
@@ -53,12 +55,19 @@ def button_div():
     operation = "DIV"
     f_num = int(first_input)
     e.delete(0, END)
+def button_sqrt():
+    first_input = e.get()
+    global f_num 
+    global operation
+    operation = "SQRT"
+    f_num = int(first_input)
+    e.delete(0,END)
 def button_inst():
-    e.insert(0,'USE "=" AFTER EACH EXPRESSION')
+    e.insert(0,'USE "=" AFTER EACH EXPRESSION, *recall functionality will be added soon!*')
 
 
 # define buttons
-button_INST = Button(window, text ="INSTRUCTIONS",padx= 20, pady= 20, bg = "yellow", bd = 10, font = "Modern", command=button_inst)
+button_INST = Button(window, text ="INSTRUCTIONS",padx= 20, pady= 23, bg = "yellow", bd = 10, font = "Modern", command=button_inst)
 button_1 = Button(window, text="1", padx=65, pady=20,bd = 5, command=lambda: button_click(1))
 button_2 = Button(window, text="2", padx=65, pady=20, bd = 5,command=lambda: button_click(2))
 button_3 = Button(window, text="3", padx=65, pady=20,bd = 5, command=lambda: button_click(3))
@@ -68,13 +77,14 @@ button_6 = Button(window, text="6", padx=65, pady=20,bd = 5, command=lambda: but
 button_7 = Button(window, text="7", padx=65, pady=20,bd = 5, command=lambda: button_click(7))
 button_8 = Button(window, text="8", padx=65, pady=20,bd = 5, command=lambda: button_click(8))
 button_9 = Button(window, text="9", padx=65, pady=20,bd = 5, command=lambda: button_click(9))
-button_0 = Button(window, text="0", padx=65, pady=20,bd = 5, command=lambda: button_click(0))
-button_add = Button(window, text="+", padx=65, pady=19, bd = 5,command=add_button)
-button_equal = Button(window, text="=", padx=65, pady=19,bd = 5, command=equal_button)
-button_clear = Button(window,text="CLEAR", padx=65, pady=19,bd = 5, command=clear_button)
-button_sub = Button(window, text = "-", padx = 65, pady = 19,bd = 5,command=button_sub)
-button_mult = Button(window, text = "X", padx = 65, pady = 19,bd = 5,command=button_mult)
-button_div = Button(window, text = "%", padx = 65, pady = 19,bd = 5,command=button_div)
+button_0 = Button(window, text="0", padx=65, pady=25,bd = 5, command=lambda: button_click(0))
+button_add = Button(window, text="+", padx=65, pady=30, bd = 5,bg = "green",command=add_button)
+button_sub = Button(window, text = "-", padx = 65, pady = 22,bd = 5, bg = "green",command=button_sub)
+button_mult = Button(window, text = "X", padx = 63, pady = 21,bd = 5,bg = "green",command=button_mult)
+button_div = Button(window, text = "%", padx = 63, pady = 21,bd = 5,bg = "green",command=button_div)
+button_sqrt = Button(window, text = "√",padx = 65, pady = 30,bd = 5,bg = "green",command=button_sqrt)
+button_equal = Button(window, text="=", padx=65, pady=25,bd = 5, command=equal_button)
+button_clear = Button(window,text="CLEAR", padx=52, pady=25,bd = 5, bg = "red", command=clear_button)
 
 # display buttons
 button_INST.grid(row = 6, column = 0,)
@@ -91,11 +101,12 @@ button_8.grid(row=1, column=1)
 button_9.grid(row=1, column=2)
 
 button_0.grid(row=4, column=0)
-button_add.grid(row=4, column=1)
-button_equal.grid(row=4, column=2)
-button_clear.grid(row=6, column=2)
+button_equal.grid(row=4, column=1)
+button_clear.grid(row=4, column=2)
+button_add.grid(row=6, column=2)
 button_sub.grid(row=5, column=1)
 button_mult.grid(row=5,column = 0)
 button_div.grid(row=5, column = 2)
+button_sqrt.grid(row = 6, column = 1)
 
 window.mainloop()
